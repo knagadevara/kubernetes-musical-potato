@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginxdeployment
+spec:
+  selector:
+    matchLabels:
+      app: nginxproxy
+  template:
+    metadata:
+      labels:
+        app: nginxproxy
+    spec:
+      containers:
+      - name: nginxproxy
+        image:  nginx:1.19.1-alpine
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
