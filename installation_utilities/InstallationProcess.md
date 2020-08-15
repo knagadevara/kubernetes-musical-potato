@@ -31,9 +31,10 @@ Note:
 
 1. Save the details of all the hostnames seperated by their role 'manager' or 'worker' in two seperate files as named below, which would be used in upcoming steps.
         
-	K8sManager.ini  K8sWorkers.ini
+		K8sManager.ini
+		K8sWorkers.ini
         
 2. Commandline variable can only be the below values for respecter parameters.
     
-	ROLE: [manager,worker]
-	SWITCHER: [0,1]
+		ROLE: [manager,worker]
+		SWITCHER: [0,1]
