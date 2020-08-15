@@ -49,3 +49,5 @@
     - To edit the existing running configuration
 
 		kubectl edit deployment/<deployment-name>
+
+
