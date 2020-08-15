@@ -27,10 +27,13 @@
 
 		source installKube.sh $ROLE
 
-Note: Save the details of all the hostnames seperated by their role 'manager' or 'worker' in two seperate files as named below, which would be used in upcoming steps.
+Note:
+
+1. Save the details of all the hostnames seperated by their role 'manager' or 'worker' in two seperate files as named below, which would be used in upcoming steps.
         
 	K8sManager.ini  K8sWorkers.ini
         
-	commandline variable can only be the below values for respecter parameters.
-        ROLE: [manager,worker]
-        SWITCHER: [0,1]
+2. Commandline variable can only be the below values for respecter parameters.
+    
+	ROLE: [manager,worker]
+	SWITCHER: [0,1]
