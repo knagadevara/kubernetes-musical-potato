@@ -3,16 +3,17 @@ kind: Deployment
 metadata:
   name: nginxdeployment
 spec:
+  replicas: 3
   selector:
     matchLabels:
-      app: nginxproxy
+      app: nginx
   template:
     metadata:
       labels:
-        app: nginxproxy
+        app: nginx
     spec:
       containers:
-      - name: nginxproxy
+      - name: nginx
         image:  nginx:1.19.1-alpine
         resources:
           limits:
