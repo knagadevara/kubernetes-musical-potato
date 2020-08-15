@@ -27,24 +27,25 @@
 - : To manually expose the deployment but not recomended in production.
 
         kubectl expose deployment <deployment-name> --type=NodePort
+
 - : Upgrade and Rollout component in the deployment
 
     - Upgrade the deployment with new image
 
-        kubectl set image deployment/<deployment-name> <container-name>=<newimage-name>
+	        kubectl set image deployment/<deployment-name> <container-name>=<newimage-name>
 
     - To check the rollout status
 
-        kubectl rollout status deployment/<deployment-name>
+	        kubectl rollout status deployment/<deployment-name>
 
     - To check the rollout History
 
-        kubectl rollout history deployment/<deployment-name>
+	        kubectl rollout history deployment/<deployment-name>
 
     - To rollback to the previous
 
-        kubectl rollout undo deployment/<deployment-name>
+	        kubectl rollout undo deployment/<deployment-name>
 
     - To edit the existing running configuration
 
-	kubectl edit deployment/<deployment-name>
+		kubectl edit deployment/<deployment-name>
