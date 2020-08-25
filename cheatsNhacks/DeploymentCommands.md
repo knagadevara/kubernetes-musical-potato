@@ -18,9 +18,15 @@
 
 - : To know more information on the resources by 'describe'
 
+		syntax: kubectl describe <object-kind>/<object-name>
+	
         kubectl describe rs/<replicationSet-name>
         kubectl describe pod/<pod-name>
         kubectl describe deployment/<deployment-name>
+
+**Ideal way to update an object in Production is via applying the configuration in 'yaml' file, through which all the changes can be versioned**
+   
+ 	  	kubectl apply -f <path to file>
 
 **Not Recommended in Production**
 
@@ -46,8 +52,7 @@
 
 	        kubectl rollout undo deployment/<deployment-name>
 
-    - To edit the existing running configuration
-
-		kubectl edit deployment/<deployment-name>
-
+    - To edit the existing running configuration which inturn updates the objectt
+    
+    		kubectl edit deployment/<deployment-name>
 
