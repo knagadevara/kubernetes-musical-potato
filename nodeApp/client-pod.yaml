@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+    ## System Defaults will have to be submited here
+    name: "deployment.nodeapp.prod"
+    labels:
+    ## Custom defaults will have to be submited here
+      contentname: "client.web.deployment"
+      nodeapptype: "clientapp"
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      appname: "clientv1"
+
+  template:
+    metadata:
+      labels:
+        nodeapptype: "clientapp"
+        appname: "clientv1"
+
+    spec:
+      containers:
+
+        - name: "nodeclient"
+          image: "knagadevara/node-app:client_dev_v.1"
+          ports:
+            - containerPort: 3000
