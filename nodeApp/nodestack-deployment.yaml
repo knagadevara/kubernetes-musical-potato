@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+    ## System Defaults will have to be submited here
+    name: "deployment.nodestack.app.prod"
+    labels:
+    ## Custom defaults will have to be submited here
+      contentname: "web.deployment"
+      nodeapptype: "nodestack"
+
+spec:
+
+  replicas: 2
+  selector:
+    matchLabels:
+      appname: "worker_v1"
+  template:
+    metadata:
+      labels:
+        appname: "worker_v1"
+    spec:
+      containers:
+
+        - name: "nodeworker"
+          image: "knagadevara/node-app:worker_dev_v.1"
+          ports:
+            - containerPort: 5000
+
+        - name: "nodeclient"
+          image: "knagadevara/node-app:client_dev_v.1"
+          ports:
+            - containerPort: 3000
+
+        - name: "nodeserver"
+          image: "knagadevara/node-app:master_dev_v.1"
+          ports:
+            - containerPort: 4000
+
