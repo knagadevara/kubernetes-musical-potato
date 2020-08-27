@@ -33,6 +33,11 @@ spec:
           env:
             - name: "PGUSER"
               value: "postgres"
+            - name: "PGPASSWORD"
+              valueFrom:
+                  secretKeyRef:
+                    name: "pgpassword"
+                    key: "PGPASSWORD" 
             - name: "PGHOST"
               value: "standalone-postgres-service"
             - name: "PGPORT"
