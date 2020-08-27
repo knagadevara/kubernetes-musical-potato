@@ -22,7 +22,6 @@ spec:
         appname: "worker_v1"
     spec:
       containers:
-
         - name: "nodeworker"
           image: "knagadevara/node-app:worker_dev_v.1"
           ports:
@@ -37,4 +36,3 @@ spec:
           image: "knagadevara/node-app:master_dev_v.1"
           ports:
             - containerPort: 4000
-
