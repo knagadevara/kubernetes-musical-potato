@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: multiClient_Deployment
+
+spec:
+
+  replicas: 3
+  selector:
+    matchLabels:
+      nodeapp: multiClientPOD
+      component: web
+
+  template:
+
+    metadata:
+      labels:
+        nodeapp: multiClientPOD
+        component: web
+
+
+    spec:
+
+      containers:
+      - name: multiClientAPP
+        image: "knagadevara/node-app:client_dev_v.1"
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 3000

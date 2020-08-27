@@ -1,0 +1,34 @@
+---
+apiServer: apps/v1
+kind: Deployment
+metadata:
+  name: multiMaster_Deployment
+
+  spec:
+
+    replicas: 3
+    selector:
+      matchLabels:
+        nodeapp: multiMasterPOD
+        component: web
+
+  template:
+
+    metadata:
+      labels:
+        nodeapp: multiMasterPOD
+        component: web
+
+    spec:
+
+      containers:
+      - name: multiMasterAPP
+        image: "knagadevara/node-app:master_dev_v.1"
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 5000
+
+
