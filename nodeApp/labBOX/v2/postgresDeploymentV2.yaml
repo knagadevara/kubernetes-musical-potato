@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: standalone-postgres-deployment
+
+spec:
+
+  replicas: 1
+  selector:
+    matchLabels:
+      nodedb: standalone-postgres-pod
+
+  template:
+    metadata:
+      labels:
+        nodedb: standalone-postgres-pod
+        component: db-postgres    
+    
+    spec:
+
+      volumes:
+        - name: postgres-volume
+          persistentVolumeClaim:
+              claimName: postgres-pvc
+
+      containers:
+        - name: standalone-postgres-app
+          image: "postgres:9.5-alpine"
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "250m"
+          ports:
+          - containerPort: 5432
+          
+          volumeMounts:
+            - name: postgres-volume 
+              mountPath: "/var/lib/postgresql/data"
+              subPath: postgres

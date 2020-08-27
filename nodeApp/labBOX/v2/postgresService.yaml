@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: standalone-postgres-service
+
+spec:
+
+  selector:
+    nodedb: "standalone-postgres-pod"
+
+  type: ClusterIP
+  ports:
+    - port: 5432
+      targetPort: 5432
+    
