@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: multi-worker-deployment
+
+spec:
+
+  replicas: 1
+  selector:
+    matchLabels:
+      nodeapp: multi-worker-pod
+
+  template:
+    metadata:
+      labels:
+        nodeapp: multi-worker-pod
+        component: web-worker
+
+    spec:
+
+      containers:
+        - name: multi-worker-app
+          image: "knagadevara/node-app:worker_dev_v.1"
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "250m"
+          ports:
+          - containerPort: 5000
