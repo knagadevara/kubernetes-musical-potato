@@ -12,23 +12,23 @@ metadata:
         nodeapp: multi-master-pod
         component: web
 
-  template:
+    template:
 
-    metadata:
-      labels:
-        nodeapp: multi-master-pod
-        component: web
+      metadata:
+        labels:
+          nodeapp: multi-master-pod
+          component: web
 
-    spec:
+      spec:
 
-      containers:
-      - name: multi-master-app
-        image: "knagadevara/node-app:master_dev_v.1"
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "250m"
-        ports:
-        - containerPort: 5000
+        containers:
+        - name: multi-master-app
+          image: "knagadevara/node-app:master_dev_v.1"
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "250m"
+          ports:
+          - containerPort: 5000
 
 
