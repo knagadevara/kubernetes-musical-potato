@@ -10,24 +10,23 @@ spec:
   selector:
     matchLabels:
       nodeapp: multi-client-pod
-      component: web
 
   template:
 
     metadata:
       labels:
         nodeapp: multi-client-pod
-        component: web
+        component: web-client
 
 
     spec:
 
       containers:
-      - name: multi-client-app
-        image: "knagadevara/node-app:client_dev_v.1"
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "250m"
-        ports:
-        - containerPort: 3000
+        - name: multi-client-app
+          image: "knagadevara/node-app:client_dev_v.1"
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "250m"
+          ports:
+          - containerPort: 3000
