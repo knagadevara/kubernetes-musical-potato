@@ -7,7 +7,7 @@ spec:
 
   replicas: 1
   selector:
-    matchLables:
+    matchLabels:
       nodedb: standalone-redis-pod
 
   template:
