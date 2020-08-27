@@ -10,23 +10,23 @@ spec:
   selector:
     matchLabels:
       nodeapp: multi-master-pod
-      component: web
+      component: web-master
 
   template:
 
     metadata:
       labels:
         nodeapp: multi-master-pod
-        component: web
+        component: web-master
 
     spec:
 
       containers:
-      - name: multi-master-app
-        image: "knagadevara/node-app:master_dev_v.1"
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "250m"
-        ports:
-        - containerPort: 5000
+        - name: multi-master-app
+          image: "knagadevara/node-app:master_dev_v.1"
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "250m"
+          ports:
+          - containerPort: 5000
