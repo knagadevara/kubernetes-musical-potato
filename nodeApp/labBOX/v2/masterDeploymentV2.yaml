@@ -30,3 +30,17 @@ spec:
               cpu: "250m"
           ports:
           - containerPort: 5000
+          env:
+            - name: "PGUSER"
+              value: "postgres"
+            - name: "PGHOST"
+              value: "standalone-postgres-service"
+            - name: "PGPORT"
+              value: "5432"
+            - name: "PGDATABASE"
+              value: "postgres"
+            - name: "REDIS_HOST"
+              value: "standalone-redis-service"
+            - name: "REDIS_PORT"
+              value: "6379"            
+            
