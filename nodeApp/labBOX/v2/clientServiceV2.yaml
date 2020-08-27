@@ -2,12 +2,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: multiClient_Service
+  name: multi-client-service
 spec:
   type: ClusterIP
 
   selector:
-    nodeapp: multiClientPOD
+    nodeapp: multi-client-pod
   ports:
   - port: 3000 ##available to outside world on 
     targetPort: 3000 ## targeted container port

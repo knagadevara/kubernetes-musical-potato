@@ -2,27 +2,27 @@
 apiServer: apps/v1
 kind: Deployment
 metadata:
-  name: multiMaster_Deployment
+  name: multi-master-deployment
 
   spec:
 
     replicas: 3
     selector:
       matchLabels:
-        nodeapp: multiMasterPOD
+        nodeapp: multi-master-pod
         component: web
 
   template:
 
     metadata:
       labels:
-        nodeapp: multiMasterPOD
+        nodeapp: multi-master-pod
         component: web
 
     spec:
 
       containers:
-      - name: multiMasterAPP
+      - name: multi-master-app
         image: "knagadevara/node-app:master_dev_v.1"
         resources:
           limits:

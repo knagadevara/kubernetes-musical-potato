@@ -2,28 +2,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: multiClient_Deployment
+  name: multi-client-deployment
 
 spec:
 
   replicas: 3
   selector:
     matchLabels:
-      nodeapp: multiClientPOD
+      nodeapp: multi-client-pod
       component: web
 
   template:
 
     metadata:
       labels:
-        nodeapp: multiClientPOD
+        nodeapp: multi-client-pod
         component: web
 
 
     spec:
 
       containers:
-      - name: multiClientAPP
+      - name: multi-client-app
         image: "knagadevara/node-app:client_dev_v.1"
         resources:
           limits:

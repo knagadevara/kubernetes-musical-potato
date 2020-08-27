@@ -2,12 +2,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: multiMaster_Service
+  name: multi-master-service
 spec:
   type: ClusterIP
 
   selector:
-    nodeapp: multiMasterPOD
+    nodeapp: multi-master-pod
   ports:
   - port: 5000 ##available to outside world on 
     targetPort: 5000 ## targeted container port
