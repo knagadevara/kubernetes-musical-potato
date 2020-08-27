@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: standalone-redis-service
+
+spec:
+
+  selector:
+    nodedb: "standalone-redis-pod"
+
+  type: ClusterIP
+  ports:
+    - port: 5432
+      targetPort: 6379
+    

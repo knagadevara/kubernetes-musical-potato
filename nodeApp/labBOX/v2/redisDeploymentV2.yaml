@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: standalone-redis-deployment
+
+spec:
+
+  replicas: 1
+  selector:
+    matchLables:
+      nodedb: standalone-redis-pod
+
+  template:
+    metadata:
+      labels:
+        nodedb: standalone-redis-pod
+        component: db-redis    
+    
+    spec:
+
+      containers:
+        - name: standalone-redis-app
+          image: "redis:6.0-alpine3.12"
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "250m"
+          ports:
+          - containerPort: 6379
