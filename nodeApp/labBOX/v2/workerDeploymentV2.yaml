@@ -28,6 +28,7 @@ spec:
               cpu: "250m"
           ports:
           - containerPort: 5000
+            protocol: TCP          
           env:
             - name: "REDIS_HOST"
               value: "standalone-redis-service"

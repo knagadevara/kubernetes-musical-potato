@@ -32,6 +32,7 @@ spec:
               cpu: "250m"
           ports:
           - containerPort: 5432
+            protocol: TCP          
           env:
             - name: "PGPASSWORD"
               valueFrom:
