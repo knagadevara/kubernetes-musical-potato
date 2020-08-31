@@ -26,13 +26,57 @@ spec:
           image: "knagadevara/node-app:worker_dev_v.1"
           ports:
             - containerPort: 5000
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "250m"
 
         - name: "nodeclient"
           image: "knagadevara/node-app:client_dev_v.1"
           ports:
             - containerPort: 3000
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "250m"
+          volumeMounts:
+            - name: http-data
+              mountPath: /var/www/app
 
         - name: "nodeserver"
           image: "knagadevara/node-app:master_dev_v.1"
           ports:
             - containerPort: 4000
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "250m"
+
+        - name: standalone-postgres-app
+          image: "postgres:9.5-alpine"
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "250m"
+          ports:
+          - containerPort: 5432
+            protocol: TCP          
+          env:
+            - name: "PGPASSWORD"
+              valueFrom:
+                  secretKeyRef:
+                    name: "pgpassword"
+                    key: "PGPASSWORD"          
+          volumeMounts:
+            - name: postgres-volume
+              mountPath: "/var/lib/postgresql/data"
+              subPath: postgres
+      
+      volumes:
+        - name: postgres-volume
+          hostPath:
+              path: "/var/lib/postgresql/data"
+              type: DirectoryOrCreate
+
+        - name: http-data
+          emptyDir: {}
