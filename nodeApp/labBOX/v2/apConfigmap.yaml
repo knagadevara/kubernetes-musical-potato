@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config-map
+data:
+  PGHOST: "standalone-postgres-service"
+  PGPORT: "5432"
+  PGDATABASE: "postgres"
+  REDIS_HOST: "standalone-redis-service"
+  REDIS_PORT: "6379"
