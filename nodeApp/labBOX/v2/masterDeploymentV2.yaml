@@ -30,23 +30,18 @@ spec:
               cpu: "250m"
           ports:
           - containerPort: 5000
-            protocol: TCP          
-          env:
-            - name: "PGUSER"
-              value: "postgres"
+            protocol: TCP 
+          envFrom:
+            - configMapRef:
+                name: app-config-map
+          env:                
             - name: "PGPASSWORD"
               valueFrom:
                   secretKeyRef:
-                    name: "pgpassword"
-                    key: "PGPASSWORD" 
-            - name: "PGHOST"
-              value: "standalone-postgres-service"
-            - name: "PGPORT"
-              value: "5432"
-            - name: "PGDATABASE"
-              value: "postgres"
-            - name: "REDIS_HOST"
-              value: "standalone-redis-service"
-            - name: "REDIS_PORT"
-              value: "6379"            
-            
+                    name: "postgres-secret"
+                    key: "PGPASSWORD"
+            - name: "PGUSER"
+              valueFrom:
+                  secretKeyRef:
+                    name: "postgres-secret"
+                    key: "PGUSER"   

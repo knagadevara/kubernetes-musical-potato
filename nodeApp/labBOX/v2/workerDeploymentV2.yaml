@@ -29,8 +29,17 @@ spec:
           ports:
           - containerPort: 5000
             protocol: TCP          
+          envFrom:
+            - configMapRef:
+                name: app-config-map
           env:
-            - name: "REDIS_HOST"
-              value: "standalone-redis-service"
-            - name: "REDIS_PORT"
-              value: "6379"
+            - name: "PGPASSWORD"
+              valueFrom:
+                  secretKeyRef:
+                    name: "postgres-secret"
+                    key: "PGPASSWORD"
+            - name: "PGUSER"
+              valueFrom:
+                  secretKeyRef:
+                    name: "postgres-secret"
+                    key: "PGUSER"   
