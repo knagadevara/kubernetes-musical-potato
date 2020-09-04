@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vote-app-deployment
+  namespace: instavote
+spec:
+  replicas: 6
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 2  
+  revisionHistoryLimit: 3
+  paused: false
+  minReadySeconds: 90
+
+  selector:
+    matchLabels:
+      role: "voter"
+    matchExpressions:
+      - {key: "version" , operator: In , values: ["v1" , 'v2' , "v3"]}
+  template:
+    metadata:
+      name: vote-pod
+      labels:
+        role: "voter"
+        version: "v1"
+    spec:
+      containers:
+      - name: vote-app
+        image: "schoolofdevops/vote:v1"
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+          protocol: TCP
