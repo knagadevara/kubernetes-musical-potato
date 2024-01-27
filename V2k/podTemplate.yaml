@@ -1,0 +1,72 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: <Pod.Name>
+  namespace: <Namespace>
+  labels:
+    app: <Pod.Name>
+    tier: <Pod.Tier>
+spec:
+  affinity:
+    nodeaffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+            - key: <keyName>
+              operator: "<In|NoIn|Exists>"
+              values:
+              - "val1"
+              - "val2"
+              
+  tolerations:
+  - key: "<keyName1>"
+    operator: "<Equal|Exists|NotEqual>"
+    value: "<>"
+    effect: <"NoSchedule"|"NoExecute"|"PreferNoSchedule">
+  - key: "<keyName2>"
+    operator: "<Equal|Exists|NotEqual>"
+    value: "<>"
+    effect: <"NoSchedule"|"NoExecute"|"PreferNoSchedule">
+
+  securityContext:
+    runAsUser: 1001
+  containers:
+  serviceAccountName: <custom-sa>
+    - name: <container.m.name>
+      securityContext:
+        capabilities:
+          add: ["" , ""]
+      image: <container.m.image>
+      env:
+        - name: <"KEY1">
+          value: <"VAL1">
+        - name: <"KEY2">
+          valueFrom:
+            configMapKeyRef:
+              name: <"configMapName">
+              key: <"keyNameInsideConfigMap">
+        - name: <"KEY3">
+          valueFrom:
+            secretKeyRef:
+              name: <"secretName">
+              key: <"keyNameInsideSecret">            
+      ports:
+        - containerPort: <0000>
+      command: <command>
+      args: [ "<arg1>" , "arg2" ]
+
+    - name: <container.n.name>
+      image: <container.n.image>
+      ports:
+        - containerPort: <0000>
+      command: <command>
+      args: [ "<arg1>" , "arg2" ]
+      envFrom:
+        - configMapKeyRef:
+            name: <configMapName>
+      volumes:
+        - name: <volumeMountName>
+          secret:
+            secretName: <"secretName">
+

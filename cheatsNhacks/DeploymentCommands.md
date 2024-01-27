@@ -1,4 +1,4 @@
-- : To get the list of running k8s resources
+- To get the list of running k8s resources
 
         kubectl get pods -l 'environment in (production),tier in (frontend)'
         or
@@ -18,20 +18,20 @@
         or
         kubectl get rs,svc,deployments --show-labels
 
-- : To switch the present namespace context
-    - : To get the current context
+- To switch the present namespace context
+    - To get the current context
 
                 kubectl config current-context
 
-    - : To set the current context to point to desired namespace
+    - To set the current context to point to desired namespace
 
                 kubectl config set-context $(kubectl config current-context) --namespace="<NameOfNameSpace>"
 
-    - : To verify the details
+    - To verify the details
         
                 kubectl config view
 
-- : To know more information on the resources by 'describe'
+- To know more information on the resources by 'describe'
 
 	syntax: kubectl describe <object-kind>/<object-name>
 	
@@ -60,11 +60,11 @@
 
 **Not Recommended in Production**
 
-- : To manually expose the deployment but not recomended in production.
+- To manually expose the deployment but not recomended in production.
 
         kubectl expose deployment <deployment-name> --type=NodePort
 
-- : Upgrade and Rollout component in the deployment
+- Upgrade and Rollout component in the deployment
 
     - Upgrade the deployment with new image
 
